@@ -3,6 +3,7 @@
 import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import svgo from 'rollup-plugin-svgo'
 const banner = require('./banner.js')
 const path = require('path')
 const pkg = require("./../package.json");
@@ -14,7 +15,8 @@ const plugins = [
     exclude: 'node_modules/**',
     // Include the helpers in the bundle, at most one copy of each
     babelHelpers: 'bundled'
-  })
+  }),
+  svgo()
 ]
 
 const external = ['@popperjs/core']
