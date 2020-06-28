@@ -1,0 +1,42 @@
+{
+  "name": "meui",
+  "version": "1.0.0",
+  "homepage": "https://joelhenrique.com/",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "repository": "https://github.com/joelhenrique2000/meui.git",
+  "author": "Joel Henrique Silva Santos <joelhenrique2000@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "run-s clean && run-p build:es build:cjs build:lib:es",
+    "build:es": "rollup --config build/rollup.config.js",
+    "build:css": "yarn run build-sass && yarn run build-autoprefix && yarn run build-cleancss",
+    "build-autoprefix": "postcss --use autoprefixer --map false --output css/meui.css css/meui.css",
+    "build-cleancss": "cleancss -o css/meui.min.css css/meui.css",
+    "build-sass": "node-sass --output-style expanded --source-map true meui.scss css/meui.css"
+  },
+  "peerDependencies": {
+    "@popperjs/core": "^2.4.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@popperjs/core": "^2.4.2",
+    "@rollup/plugin-babel": "^5.0.4",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "autoprefixer": "^9.8.4",
+    "clean-css-cli": "^4.3.0",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.18.1"
+  }
+}
